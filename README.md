@@ -46,7 +46,7 @@ You have been given a View and Controller for a basic integer calculator, **you 
 		- *Code checked into GitHub*
 		- *Unit tests were written, all pass*
 		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
-- [  ] Complete following statement in space below:
+- [ ] Complete following statement in space below:
 >The Stack implementation we will be using is [***type which data structure you'll use in this adaptor pattern***] because [ ***type your reasoning here in 2-3 sentences, making sure to justify the way we have in class (run-time efficiency, memory-space efficiency, etc.)*** ].
 
 ## Sprint 1 (???)
@@ -54,26 +54,26 @@ You have been given a View and Controller for a basic integer calculator, **you 
 >As a ***???*** I want to ***???*** so that ***???***.
 
 **Definition Of Done**:
-- [  ] General requirements 
+- [ ] General requirements 
 	- *Code adheres to coding standard/convention*
 	- *Code is documented*
 	- *Code checked into GitHub*
 	- *Unit tests were written, all pass*
 	- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
-- [  ] Product owner agrees
+- [ ] Product owner agrees
 
 ## Sprint 2 (???)
 **User Story**:
 >As a ***???*** I want to ***???*** so that ***???***.
 
 **Definition Of Done**:
-- [  ] General requirements 
+- [ ] General requirements 
 	- *Code adheres to coding standard/convention*
 	- *Code is documented*
 	- *Code checked into GitHub*
 	- *Unit tests were written, all pass*
 	- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
-- [  ] Product owner agrees
+- [ ] Product owner agrees
 
 ----------
 ### Make sure to commit + push *before* the deadline to have your code be considered for grading.

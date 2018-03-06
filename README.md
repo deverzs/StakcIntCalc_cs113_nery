@@ -16,13 +16,13 @@ You have been given a View and Controller for a basic integer calculator, **you 
 	Allow for entry of vectors and add dot product, cross product and scalar multiplication. 
 
 ### Stack Integer Calculator  – UML Class Relationship Diagram
-![UML class diagram](../CS113-GP2-IntegerCalculator/doc/UML_classDiagram.png)
+![UML class diagram](doc/UML_classDiagram.png)
 
 ### Stack Integer Calculator - Wireframe
-![wireframe](../CS113-GP2-IntegerCalculator/doc/calculatorViewLayout.png)
+![wireframe](doc/calculatorViewLayout.png)
 
 ### Stack Integer Calculator - Final GUI Screenshot
-![final GUI screenshot](../CS113-GP2-IntegerCalculator/doc/calculatorStartGUI.png)
+![final GUI screenshot](doc/calculatorStartGUI.png)
 
 
 ----------
@@ -55,11 +55,11 @@ You have been given a View and Controller for a basic integer calculator, **you 
 
 **Definition Of Done**:
 - [  ] General requirements 
-		- *Code adheres to coding standard/convention*
-		- *Code is documented*
-		- *Code checked into GitHub*
-		- *Unit tests were written, all pass*
-		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
+	- *Code adheres to coding standard/convention*
+	- *Code is documented*
+	- *Code checked into GitHub*
+	- *Unit tests were written, all pass*
+	- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
 - [  ] Product owner agrees
 
 ## Sprint 2 (???)
@@ -68,11 +68,11 @@ You have been given a View and Controller for a basic integer calculator, **you 
 
 **Definition Of Done**:
 - [  ] General requirements 
-		- *Code adheres to coding standard/convention*
-		- *Code is documented*
-		- *Code checked into GitHub*
-		- *Unit tests were written, all pass*
-		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
+	- *Code adheres to coding standard/convention*
+	- *Code is documented*
+	- *Code checked into GitHub*
+	- *Unit tests were written, all pass*
+	- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
 - [  ] Product owner agrees
 
 ----------

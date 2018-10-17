@@ -1,18 +1,17 @@
+package models;
+
 /**
- * CalculatorModel.java : Concrete class using stack data structure to evaluate infix math expression
+ * CalculatorModel.java : Concrete class using the stack data structure to evaluate infix math expressions.
  *
- * TODO: This file given just to get code to compile (method stubbed).  Make sure to implement appropriately. [and remove this]
+ * TODO: This file given just to get code to compile (method stubbed). Make sure to implement appropriately (and remove this).
  *
  * @author Nery Chapeton-Lamas
  * @version 1.0
- *
  */
-
-package models;
-
 public class CalculatorModel implements CalculatorInterface {
+
     @Override
-    public int evaluate(String expression) {
-        return 0;
+    public String evaluate(String expression) {
+        return "NaN";
     }
 }

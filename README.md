@@ -49,11 +49,11 @@ You have been given a View and Controller for a basic integer calculator, **you 
 		- *Unit tests were written, all pass*
 		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
 - [ ] Complete following statement in space below:
->The Stack implementation we will be using is [***type which data structure you'll use in this adaptor pattern***] because [ ***type your reasoning here in 2-3 sentences, making sure to justify the way we have in class (run-time efficiency, memory-space efficiency, etc.)*** ].
+>The Stack implementation we will be using is LinkedList because because adding to a LinkedList an O(1) Operation.
 
 ## Sprint 1 (???)
 **User Story**:
->As a ***???*** I want to ***???*** so that ***???***.
+>As a user I want to save math expression so that I can solve any problem
 
 **Definition Of Done**:
 - [ ] General requirements 
@@ -66,7 +66,7 @@ You have been given a View and Controller for a basic integer calculator, **you 
 
 ## Sprint 2 (???)
 **User Story**:
->As a ***???*** I want to ***???*** so that ***???***.
+>As a user I want to evaluate saved expressions to get an accurate result 
 
 **Definition Of Done**:
 - [ ] General requirements 

@@ -16,13 +16,9 @@ public class CalculatorModel implements CalculatorInterface {
     public static final String OPERATORS = "+-*/()";
     public static final int[] PRECEDENCE = {1, 1, 2, 2, -1, -1};
     private Stack<Integer> operands;
-
-
     private int firstTerm ;
     private int secondTerm ;
-    private int subTotal ;
     private int total ;
-    private Stack<Character> stack ;
 
     /**
      * Default constructor for CalculatorModel. All instance variables are set to default.
@@ -30,9 +26,8 @@ public class CalculatorModel implements CalculatorInterface {
     public  CalculatorModel() {
         firstTerm = 0 ;
         secondTerm = 0 ;
-        subTotal = 0 ;
         total = 0 ;
-        stack = new Stack<Character>();
+        operands = new Stack<Integer>();
     }
 
     /**
@@ -40,10 +35,9 @@ public class CalculatorModel implements CalculatorInterface {
      * @param stack  Reference to new stack
      */
     public CalculatorModel(Stack stack) {
-        this.stack = stack ;
+        this.operands = stack ;
         firstTerm = 0 ;
         secondTerm = 0 ;
-        subTotal = 0 ;
         total = 0 ;
     }
 
@@ -52,10 +46,9 @@ public class CalculatorModel implements CalculatorInterface {
      * @param model The CalculatorModel to be copied. Creates a shallow copy.
      */
     public CalculatorModel(CalculatorModel model) {
-        stack = model.stack ;
+        operands = model.operands ;
         firstTerm = model.firstTerm ;
         secondTerm = model.secondTerm ;
-        subTotal = model.subTotal ;
         total = model.total ;
 
     }
@@ -65,7 +58,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param term Term of int to be added to the stack.
      */
     public void pushToStack(int term) {
-        stack.push((char)term) ;
+        operands.push(term) ;
     }
 
     /**
@@ -73,7 +66,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @return an int that represents the item at the top of the stack
      */
     public int popFronStack() {
-        return   (int) stack.pop() ;
+        return   operands.pop() ;
     }
 
     /**
@@ -82,8 +75,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param term2 Second integer to be added
      */
     public void add(int term1, int term2) {
-        int temp = term1 + term2 ;
-        stack.push((char) temp) ;
+        operands.push(term1 + term2) ;
     }
 
     /**
@@ -92,8 +84,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param term2 Subtrahend
      */
     public void sub(int term1, int term2) {
-        int temp = term1 - term2 ;
-        stack.push((char)temp) ;
+        operands.push(term1 - term2) ;
     }
 
     /**
@@ -102,8 +93,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param term2 Divisor
      */
     public void divide(int term1, int term2) {
-        int temp = term1 / term2 ;
-        stack.push((char) temp) ;
+        operands.push(term1 / term2) ;
     }
 
     /**
@@ -112,8 +102,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param term2 Factor 2
      */
     public void mult(int term1, int term2) {
-        int temp = term1 * term2 ;
-        stack.push((char) temp) ;
+        operands.push( term1 * term2) ;
     }
 
     // Setters
@@ -134,13 +123,6 @@ public class CalculatorModel implements CalculatorInterface {
         secondTerm = term ;
     }
 
-    /**
-     * Setter for sbTotal
-     * @param term New term to be applied
-     */
-    public void setSubTotal(int term) {
-        subTotal = term ;
-    }
 
     /**
      * Setter for total
@@ -155,7 +137,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param stack New stack to be applied
      */
     public void setStack(Stack stack) {
-        this.stack = stack ;
+        this.operands = stack ;
     }
 
     /**
@@ -169,9 +151,8 @@ public class CalculatorModel implements CalculatorInterface {
     public void setAll(int firstTerm, int secondTerm, int subTotal, int total, Stack stack) {
         this.firstTerm = firstTerm ;
         this.secondTerm = secondTerm ;
-        this.subTotal = subTotal ;
         this.total = total ;
-        this.stack = stack ;
+        this.operands = stack ;
     }
 
     // Getters
@@ -192,13 +173,6 @@ public class CalculatorModel implements CalculatorInterface {
         return secondTerm ;
     }
 
-    /**
-     * Returns the subTotal
-     * @return subTotal of stack
-     */
-    public int getSubTotal() {
-        return subTotal ;
-    }
 
     /**
      * Returns the total
@@ -213,7 +187,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @return stack
      */
     public Stack getStack() {
-        return stack ;
+        return operands ;
     }
 
 

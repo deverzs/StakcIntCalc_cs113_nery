@@ -1,5 +1,6 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -14,8 +15,207 @@ import java.util.Stack;
 public class CalculatorModel implements CalculatorInterface {
     public static final String OPERATORS = "+-*/()";
     public static final int[] PRECEDENCE = {1, 1, 2, 2, -1, -1};
-
     private Stack<Integer> operands;
+
+
+    private int firstTerm ;
+    private int secondTerm ;
+    private int subTotal ;
+    private int total ;
+    private Stack<Character> stack ;
+
+    /**
+     * Default constructor for CalculatorModel. All instance variables are set to default.
+     */
+    public  CalculatorModel() {
+        firstTerm = 0 ;
+        secondTerm = 0 ;
+        subTotal = 0 ;
+        total = 0 ;
+        stack = new Stack<Character>();
+    }
+
+    /**
+     * Constructor that takes in another stack as its main operational stack.
+     * @param stack  Reference to new stack
+     */
+    public CalculatorModel(Stack stack) {
+        this.stack = stack ;
+        firstTerm = 0 ;
+        secondTerm = 0 ;
+        subTotal = 0 ;
+        total = 0 ;
+    }
+
+    /**
+     * Copy constructor that takes in another model to copy.
+     * @param model The CalculatorModel to be copied. Creates a shallow copy.
+     */
+    public CalculatorModel(CalculatorModel model) {
+        stack = model.stack ;
+        firstTerm = model.firstTerm ;
+        secondTerm = model.secondTerm ;
+        subTotal = model.subTotal ;
+        total = model.total ;
+
+    }
+
+    /**
+     * Adds a new term of int to the stack.
+     * @param term Term of int to be added to the stack.
+     */
+    public void pushToStack(int term) {
+        stack.push((char)term) ;
+    }
+
+    /**
+     * Removes the top item from the stack.
+     * @return an int that represents the item at the top of the stack
+     */
+    public int popFronStack() {
+        return   (int) stack.pop() ;
+    }
+
+    /**
+     * Adds two integers together. The answer is pushed to the stack
+     * @param term1 First integer to be added
+     * @param term2 Second integer to be added
+     */
+    public void add(int term1, int term2) {
+        int temp = term1 + term2 ;
+        stack.push((char) temp) ;
+    }
+
+    /**
+     * Subtracts two integers and pushes the answer to the stack
+     * @param term1 Minuend
+     * @param term2 Subtrahend
+     */
+    public void sub(int term1, int term2) {
+        int temp = term1 - term2 ;
+        stack.push((char)temp) ;
+    }
+
+    /**
+     * Divides two integers. Adds the integer answer to the stack.
+     * @param term1 Divident
+     * @param term2 Divisor
+     */
+    public void divide(int term1, int term2) {
+        int temp = term1 / term2 ;
+        stack.push((char) temp) ;
+    }
+
+    /**
+     * Multiplies two numbers and adds the answer to the stack
+     * @param term1 Factor 1
+     * @param term2 Factor 2
+     */
+    public void mult(int term1, int term2) {
+        int temp = term1 * term2 ;
+        stack.push((char) temp) ;
+    }
+
+    // Setters
+
+    /**
+     * Setter for firstTerm
+     * @param term New term to be applied
+     */
+    public void setFirstTerm(int term) {
+        firstTerm = term ;
+    }
+
+    /**
+     * Setter for secondTerm
+     * @param term New term to be applied
+     */
+    public void setSecondTermTerm(int term) {
+        secondTerm = term ;
+    }
+
+    /**
+     * Setter for sbTotal
+     * @param term New term to be applied
+     */
+    public void setSubTotal(int term) {
+        subTotal = term ;
+    }
+
+    /**
+     * Setter for total
+     * @param term New term to be applied
+     */
+    public void setTotal(int term) {
+        total = term ;
+    }
+
+    /**
+     * Setter for stack.
+     * @param stack New stack to be applied
+     */
+    public void setStack(Stack stack) {
+        this.stack = stack ;
+    }
+
+    /**
+     * Setter for all instance variables
+     * @param firstTerm term 1, an int
+     * @param secondTerm  term 2, an int
+     * @param subTotal  the subTotal of the stack
+     * @param total the total of the stack
+     * @param stack the stack to be used to compute
+     */
+    public void setAll(int firstTerm, int secondTerm, int subTotal, int total, Stack stack) {
+        this.firstTerm = firstTerm ;
+        this.secondTerm = secondTerm ;
+        this.subTotal = subTotal ;
+        this.total = total ;
+        this.stack = stack ;
+    }
+
+    // Getters
+
+    /**
+     * Returns the firstTerm
+     * @return firstTerm
+     */
+    public int getFirstTerm() {
+        return firstTerm ;
+    }
+
+    /**
+     * Returns the secondTerm
+     * @return secondTerm
+     */
+    public int getSecondTerm() {
+        return secondTerm ;
+    }
+
+    /**
+     * Returns the subTotal
+     * @return subTotal of stack
+     */
+    public int getSubTotal() {
+        return subTotal ;
+    }
+
+    /**
+     * Returns the total
+     * @return total of stack
+     */
+    public int getTotal() {
+        return total ;
+    }
+
+    /**
+     * Returns the stack
+     * @return stack
+     */
+    public Stack getStack() {
+        return stack ;
+    }
+
 
     @Override
     public String evaluate(String expression) {

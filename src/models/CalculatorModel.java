@@ -1,6 +1,5 @@
 package models;
 
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -34,7 +33,7 @@ public class CalculatorModel implements CalculatorInterface {
      * Constructor that takes in another stack as its main operational stack.
      * @param stack  Reference to new stack
      */
-    public CalculatorModel(Stack stack) {
+    public CalculatorModel(Stack<Integer> stack) {
         this.operands = stack ;
         firstTerm = 0 ;
         secondTerm = 0 ;
@@ -70,39 +69,32 @@ public class CalculatorModel implements CalculatorInterface {
     }
 
     /**
-     * Adds two integers together. The answer is pushed to the stack
-     * @param term1 First integer to be added
-     * @param term2 Second integer to be added
+     * Adds firstTerm and secondTerm and pushes result to stack
      */
-    public void add(int term1, int term2) {
-        operands.push(term1 + term2) ;
+    public void add() {
+        operands.push(this.firstTerm + this.secondTerm) ;
     }
 
     /**
-     * Subtracts two integers and pushes the answer to the stack
-     * @param term1 Minuend
-     * @param term2 Subtrahend
+     * Subtracts firstTerm from secondTerm and pushes result to stack
      */
-    public void sub(int term1, int term2) {
-        operands.push(term1 - term2) ;
+    public void sub() {
+        operands.push(this.firstTerm - this.secondTerm) ;
     }
 
     /**
-     * Divides two integers. Adds the integer answer to the stack.
-     * @param term1 Divident
-     * @param term2 Divisor
+     * Divides firstTerm and secondTerm and pushes result to stack
      */
-    public void divide(int term1, int term2) {
-        operands.push(term1 / term2) ;
+    public void divide() {
+        operands.push(this.firstTerm / this.secondTerm) ;
     }
 
+
     /**
-     * Multiplies two numbers and adds the answer to the stack
-     * @param term1 Factor 1
-     * @param term2 Factor 2
+     * Multiplies firstTerm and secondTerm and pushes result to stack
      */
-    public void mult(int term1, int term2) {
-        operands.push( term1 * term2) ;
+    public void mult() {
+        operands.push( this.firstTerm * this.secondTerm) ;
     }
 
     // Setters
@@ -136,7 +128,7 @@ public class CalculatorModel implements CalculatorInterface {
      * Setter for stack.
      * @param stack New stack to be applied
      */
-    public void setStack(Stack stack) {
+    public void setStack(Stack<Integer> stack) {
         this.operands = stack ;
     }
 
@@ -148,7 +140,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param total the total of the stack
      * @param stack the stack to be used to compute
      */
-    public void setAll(int firstTerm, int secondTerm, int subTotal, int total, Stack stack) {
+    public void setAll(int firstTerm, int secondTerm, int subTotal, int total, Stack<Integer> stack) {
         this.firstTerm = firstTerm ;
         this.secondTerm = secondTerm ;
         this.total = total ;
@@ -193,7 +185,55 @@ public class CalculatorModel implements CalculatorInterface {
 
     @Override
     public String evaluate(String expression) {
-        return "NaN";
+        String[] tokens;
+        String postFix = null;
+        int subTotal;
+        char currentChar;
+        try {
+            postFix = convert(expression);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        tokens = postFix.split("\\s+");
+        for(String token : tokens) {
+            currentChar = token.charAt(0);
+            if (Character.isDigit(currentChar)) {
+                int operand = Integer.parseInt(token);
+                this.pushToStack(operand);
+            } else if (isOperator(currentChar)) {
+                this.secondTerm = this.popFronStack();
+                this.firstTerm = this.popFronStack();
+                calcTerms(currentChar);
+            } else {
+                // Invalid char so throw exception
+            }
+        }
+        this.total = this.popFronStack();
+        if (this.operands.empty()) {
+            return this.total + "";
+        } else {
+            return "NaN";
+            // Stack should be empty
+        }
+    }
+
+    private void calcTerms(char currentChar) {
+        System.out.println("Current OP: " + currentChar);
+        switch (currentChar){
+            case '+':
+                this.add();
+                break;
+            case '-':
+                this.sub();
+                break;
+            case '*':
+                this.mult();
+                break;
+            case '/':
+                this.divide();
+                break;
+        }
     }
 
     public static String convert(String expression) throws Exception {

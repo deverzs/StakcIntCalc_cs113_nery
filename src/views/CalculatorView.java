@@ -158,6 +158,7 @@ public class CalculatorView extends JPanel implements ActionListener {
         buttonsPanel.add(this.operatorButtons[RIGHT_PAREN]);
 
         // Fourth row: CLEAR, 0, =
+        buttonsPanel.add(this.digitButtons[0]);
         buttonsPanel.add(this.clearButton);
         buttonsPanel.add(this.operatorButtons[0]);
         buttonsPanel.add(this.operatorButtons[EVAL_OP]);

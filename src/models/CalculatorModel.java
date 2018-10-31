@@ -318,6 +318,40 @@ public class CalculatorModel implements CalculatorInterface {
         }
         return sb.toString() ;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean check = true ;
+        int tempInt;
+        Stack<Integer> tempStack = new Stack<Integer>() ;
+        int move ;
+
+        if (o == null ) {
+            return false ;
+        }
+        if (!(o instanceof Stack)) {
+            return false ;
+        }
+        Stack anotherStack = (Stack) o ;
+        // moving our stack to a temp stack
+        // I added the boolean to the check so that the entire program
+        // runs and moves the temp stack back to the original before it returns
+        while ( (!(operands.empty())) || (!(check))) {
+            move =  operands.pop() ;
+            // checking for equivalency
+            if (move != (int) anotherStack.pop()) {
+                check = false ;
+            }
+            // adding popped to tempStack
+            tempStack.add(move) ;
+        }
+        // moving tempStack back to original stack
+        while (!(tempStack.empty())) {
+            move = tempStack.pop() ;
+            operands.push(move) ;
+        }
+        return check ;
 
     }
 }

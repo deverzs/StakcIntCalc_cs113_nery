@@ -298,4 +298,26 @@ public class CalculatorModel implements CalculatorInterface {
     public static int precedence(char operator){
         return PRECEDENCE[OPERATORS.indexOf(operator)];
     }
+
+    @Override
+    public String toString() {
+        //System.out.println("In the toString now");
+        StringBuilder sb = new StringBuilder() ;
+        Stack<Integer> temp = new Stack<Integer>() ;
+        int move ;
+        while (!(operands.empty())) {
+            move =  operands.pop() ;
+            sb.append(" " + move) ;
+            temp.add(move) ;
+           //System.out.println("String now is: " + sb);
+        }
+        while (!(temp.empty())) {
+            move = temp.pop() ;
+            operands.push(move) ;
+            //System.out.println("Stack now has" + move);
+        }
+        return sb.toString() ;
+
+
+    }
 }

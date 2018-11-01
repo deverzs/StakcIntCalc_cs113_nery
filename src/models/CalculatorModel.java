@@ -140,7 +140,7 @@ public class CalculatorModel implements CalculatorInterface {
      * @param total the total of the stack
      * @param stack the stack to be used to compute
      */
-    public void setAll(int firstTerm, int secondTerm, int subTotal, int total, Stack<Integer> stack) {
+    public void setAll(int firstTerm, int secondTerm, int total, Stack<Integer> stack) {
         this.firstTerm = firstTerm ;
         this.secondTerm = secondTerm ;
         this.total = total ;
@@ -187,7 +187,6 @@ public class CalculatorModel implements CalculatorInterface {
     public String evaluate(String expression) {
         String[] tokens;
         String postFix = null;
-        int subTotal;
         char currentChar;
         try {
             postFix = convert(expression);
@@ -219,7 +218,6 @@ public class CalculatorModel implements CalculatorInterface {
     }
 
     private void calcTerms(char currentChar) {
-        System.out.println("Current OP: " + currentChar);
         switch (currentChar){
             case '+':
                 this.add();
@@ -248,7 +246,6 @@ public class CalculatorModel implements CalculatorInterface {
                 postFix.append(token);
                 postFix.append(' ');
             } else if(isOperator(firstChar)){
-                //process operator
                 processOperator(operators, postFix, firstChar);
             } else{
                 throw new Exception("Unsupported Operator");
@@ -291,11 +288,11 @@ public class CalculatorModel implements CalculatorInterface {
         }
     }
 
-    public static boolean isOperator(char check){
+    private static boolean isOperator(char check){
         return OPERATORS.indexOf(check) != -1;
     }
 
-    public static int precedence(char operator){
+    private static int precedence(char operator){
         return PRECEDENCE[OPERATORS.indexOf(operator)];
     }
 
@@ -317,7 +314,6 @@ public class CalculatorModel implements CalculatorInterface {
             //System.out.println("Stack now has" + move);
         }
         return sb.toString() ;
-
     }
 
     @Override
@@ -352,6 +348,5 @@ public class CalculatorModel implements CalculatorInterface {
             operands.push(move) ;
         }
         return check ;
-
     }
 }

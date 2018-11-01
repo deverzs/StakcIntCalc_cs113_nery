@@ -32,6 +32,18 @@ public class CalculatorModel implements CalculatorInterface {
     }
 
     /**
+     * Constructor for debugging
+     * @param term1  firstTerm
+     * @param term2  secondTerm
+     */
+    public CalculatorModel(int term1, int term2) {
+        firstTerm = term1 ;
+        secondTerm = term2 ;
+        total = 0 ;
+        operands = new Stack<Integer>() ;
+    }
+
+    /**
      * Constructor that takes in another stack as its main operational stack.
      * @param stack  Reference to new stack
      */
@@ -66,8 +78,15 @@ public class CalculatorModel implements CalculatorInterface {
      * Removes the top item from the stack.
      * @return an int that represents the item at the top of the stack
      */
-    public int popFronStack() {
-        return   operands.pop() ;
+    public int popFromStack() {
+        int temp ;
+        if (operands.isEmpty()) {
+            temp = -1 ;
+        }
+        else {
+            temp =  operands.pop();
+        }
+        return temp;
     }
 
     /**
@@ -113,7 +132,7 @@ public class CalculatorModel implements CalculatorInterface {
      * Setter for secondTerm
      * @param term New term to be applied
      */
-    public void setSecondTermTerm(int term) {
+    public void setSecondTerm(int term) {
         secondTerm = term ;
     }
 
@@ -201,14 +220,14 @@ public class CalculatorModel implements CalculatorInterface {
                 int operand = Integer.parseInt(token);
                 this.pushToStack(operand);
             } else if (isOperator(currentChar)) {
-                this.secondTerm = this.popFronStack();
-                this.firstTerm = this.popFronStack();
+                this.secondTerm = this.popFromStack();
+                this.firstTerm = this.popFromStack();
                 calcTerms(currentChar);
             } else {
                 return "Invalid Character Detected!";
             }
         }
-        this.total = this.popFronStack();
+        this.total = this.popFromStack();
         if (this.operands.empty()) {
             return this.total + "";
         } else {
@@ -323,7 +342,6 @@ public class CalculatorModel implements CalculatorInterface {
 
     @Override
     public String toString() {
-        //System.out.println("In the toString now");
         StringBuilder sb = new StringBuilder() ;
         Stack<Integer> temp = new Stack<Integer>() ;
         int move ;
@@ -331,12 +349,10 @@ public class CalculatorModel implements CalculatorInterface {
             move =  operands.pop() ;
             sb.append(" " + move) ;
             temp.add(move) ;
-           //System.out.println("String now is: " + sb);
         }
         while (!(temp.empty())) {
             move = temp.pop() ;
             operands.push(move) ;
-            //System.out.println("Stack now has" + move);
         }
         return sb.toString() ;
     }
@@ -344,25 +360,27 @@ public class CalculatorModel implements CalculatorInterface {
     @Override
     public boolean equals(Object o) {
         boolean check = true ;
+        boolean done = false ;
         int tempInt;
-        Stack<Integer> tempStack = new Stack<Integer>() ;
         int move ;
+        Stack<Integer> tempStack = new Stack<Integer>() ;
 
         if (o == null ) {
             return false ;
         }
-        if (!(o instanceof Stack)) {
+        if (!(o instanceof CalculatorModel)) {
             return false ;
         }
-        Stack anotherStack = (Stack) o ;
+        CalculatorModel anotherModel = (CalculatorModel) o ;
         // moving our stack to a temp stack
-        // I added the boolean to the check so that the entire program
+        // I added the boolean done so that the entire program
         // runs and moves the temp stack back to the original before it returns
-        while ( (!(operands.empty())) || (!(check))) {
+        while ( (!(operands.empty())) && (!(done))) {
             move =  operands.pop() ;
             // checking for equivalency
-            if (move != (int) anotherStack.pop()) {
+            if (move != (int) anotherModel.popFromStack()) {
                 check = false ;
+                done = true ;
             }
             // adding popped to tempStack
             tempStack.add(move) ;
@@ -374,4 +392,5 @@ public class CalculatorModel implements CalculatorInterface {
         }
         return check ;
     }
+
 }

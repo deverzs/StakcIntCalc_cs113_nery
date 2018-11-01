@@ -1,5 +1,7 @@
 package models;
 
+import jdk.nashorn.internal.ir.ReturnNode;
+
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -136,7 +138,6 @@ public class CalculatorModel implements CalculatorInterface {
      * Setter for all instance variables
      * @param firstTerm term 1, an int
      * @param secondTerm  term 2, an int
-     * @param subTotal  the subTotal of the stack
      * @param total the total of the stack
      * @param stack the stack to be used to compute
      */
@@ -186,14 +187,13 @@ public class CalculatorModel implements CalculatorInterface {
     @Override
     public String evaluate(String expression) {
         String[] tokens;
-        String postFix = null;
+        String postFix;
         char currentChar;
-        try {
-            postFix = convert(expression);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
+        postFix = convert(expression);
+        if(postFix.contains("ERROR")){
+            return postFix;
+        }
         tokens = postFix.split("\\s+");
         for(String token : tokens) {
             currentChar = token.charAt(0);
@@ -205,7 +205,7 @@ public class CalculatorModel implements CalculatorInterface {
                 this.firstTerm = this.popFronStack();
                 calcTerms(currentChar);
             } else {
-                // Invalid char so throw exception
+                return "Invalid Character Detected!";
             }
         }
         this.total = this.popFronStack();
@@ -217,6 +217,10 @@ public class CalculatorModel implements CalculatorInterface {
         }
     }
 
+    /**
+     * Helper method for evaluating terms of expression
+     * @param currentChar Math operator to process
+     */
     private void calcTerms(char currentChar) {
         switch (currentChar){
             case '+':
@@ -234,7 +238,12 @@ public class CalculatorModel implements CalculatorInterface {
         }
     }
 
-    public static String convert(String expression) throws Exception {
+    /**
+     * Converts infix math expressions to postFix
+     * @param expression The math expression with infix operators
+     * @return String with a space after every character in postfix format
+     */
+    public static String convert(String expression){
         Stack<Character> operators = new Stack<Character>();
         StringBuilder postFix = new StringBuilder();
         Scanner scan = new Scanner(expression);
@@ -248,13 +257,13 @@ public class CalculatorModel implements CalculatorInterface {
             } else if(isOperator(firstChar)){
                 processOperator(operators, postFix, firstChar);
             } else{
-                throw new Exception("Unsupported Operator");
+                return "ERROR: Unsupported Operator";
             }
         }
         while(!operators.empty()){
             char operator = operators.pop();
             if(operator == '('){
-                throw new Exception("Extra parentheses");
+                return "ERROR: Unmatched parentheses!";
             }
             postFix.append(operator);
             postFix.append(' ');
@@ -262,6 +271,12 @@ public class CalculatorModel implements CalculatorInterface {
         return postFix.toString();
     }
 
+    /**
+     * Helper method pushes operators of higher precedence into a stack or pops and appends to a string lesser operators
+     * @param operators Character stack with math operators
+     * @param postFix StringBuilder object with operands and operators
+     * @param operator Math operator to process
+     */
     private static void processOperator(Stack<Character> operators, StringBuilder postFix, char operator){
         if(operators.empty() || operator == '('){
             operators.push(operator);
@@ -288,10 +303,20 @@ public class CalculatorModel implements CalculatorInterface {
         }
     }
 
+    /**
+     * Helper method to a character is a math operator: + - * /
+     * @param check Operator character to check
+     * @return True if char is found in valid operator list
+     */
     private static boolean isOperator(char check){
         return OPERATORS.indexOf(check) != -1;
     }
 
+    /**
+     * Helper method to gets precedence value of operator: [1] for (+ -), [2] for (* /) and [-1] for parentheses
+     * @param operator Math operator to check
+     * @return Integer that determines precedence
+     */
     private static int precedence(char operator){
         return PRECEDENCE[OPERATORS.indexOf(operator)];
     }

@@ -31,11 +31,14 @@ public class CalculatorView extends JPanel implements ActionListener {
     public static final int BUTTONS_PANEL_ROWS = 4, BUTTONS_PANEL_COLS = 5;
     /** Message displayed upon opening the calculator. */
     public static final String DISPLAY_START = "CS113 CALC ^_^";
+    public static final Font DEFAULT_FONT = new Font(Font.SERIF, Font.BOLD, 25);
 
     private JLabel displayLabel;
     private JButton[] digitButtons;
     private JButton[] operatorButtons;
     private JButton clearButton;
+    private JButton variableButton;
+    private JButton caretButton;
 
     private CalculatorInterface calc;
 
@@ -52,12 +55,22 @@ public class CalculatorView extends JPanel implements ActionListener {
         // Instantiate GUI objects
         this.displayLabel = new JLabel(DISPLAY_START);
         this.clearButton = new JButton(CLEAR);
+        this.clearButton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         this.clearButton.addActionListener(this);
+
+        this.variableButton = new JButton("x");
+        this.variableButton.setFont(DEFAULT_FONT);
+        this.variableButton.addActionListener(this);
+
+        this.caretButton = new JButton("^");
+        this.caretButton.setFont(DEFAULT_FONT);
+        this.caretButton.addActionListener(this);
 
         // Create buttons for digits 0-9
         this.digitButtons = new JButton[10];
         for(int i = 0; i < this.digitButtons.length; i ++) {
             this.digitButtons[i] = new JButton("" + i);
+            this.digitButtons[i].setFont(DEFAULT_FONT);
             this.digitButtons[i].addActionListener(this);
         }
 
@@ -65,6 +78,7 @@ public class CalculatorView extends JPanel implements ActionListener {
         this.operatorButtons = new JButton[OPERATORS.length];
         for(int i = 0; i < this.operatorButtons.length; i ++) {
             this.operatorButtons[i] = new JButton("" + OPERATORS[i]);
+            this.operatorButtons[i].setFont(DEFAULT_FONT);
             this.operatorButtons[i].addActionListener(this);
         }
 
@@ -105,7 +119,7 @@ public class CalculatorView extends JPanel implements ActionListener {
      */
     private JPanel buildDisplayPanel() {
         JPanel displayPanel = new JPanel();
-
+        displayPanel.setPreferredSize(new Dimension(600, 50));
         displayPanel.setLayout( new FlowLayout() );
         displayPanel.setBackground( new Color(248,216,0) );
         displayPanel.add(this.displayLabel);
@@ -113,7 +127,7 @@ public class CalculatorView extends JPanel implements ActionListener {
         // Add custom font
         try {
             Font calcFont = Font.createFont(Font.TRUETYPE_FONT, new File("resources/digital7mono.ttf"));
-            this.displayLabel.setFont(calcFont.deriveFont(32f));
+            this.displayLabel.setFont(calcFont.deriveFont(40f));
             this.displayLabel.setBorder(new CompoundBorder( this.displayLabel.getBorder(),
                     new EmptyBorder(5, 5, 10, 5)));
         } catch(IOException ioe) {
@@ -135,6 +149,7 @@ public class CalculatorView extends JPanel implements ActionListener {
     private JPanel buildButtonsPanel() {
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(BUTTONS_PANEL_ROWS,BUTTONS_PANEL_COLS));
+        buttonsPanel.setPreferredSize(new Dimension(600, 300));
 
         // Add buttons of first row: 7, 8, 9, +, -
         for(int i = 7; i <= 9; i ++) {
@@ -162,6 +177,8 @@ public class CalculatorView extends JPanel implements ActionListener {
         buttonsPanel.add(this.clearButton);
         buttonsPanel.add(this.operatorButtons[0]);
         buttonsPanel.add(this.operatorButtons[EVAL_OP]);
+        buttonsPanel.add(this.variableButton);
+        buttonsPanel.add(this.caretButton);
 
         return buttonsPanel;
     }

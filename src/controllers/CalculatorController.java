@@ -24,7 +24,9 @@ public class CalculatorController extends JFrame {
     public CalculatorController(CalculatorInterface calc) {
         super(); // JFrame constructor
 
-        this.setSize(WIDTH, HEIGHT);
+        this.setSize(600, 400);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CS113 Stack Calculator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());

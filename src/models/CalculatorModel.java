@@ -115,6 +115,9 @@ public class CalculatorModel implements CalculatorInterface {
         operands.push(this.firstTerm / this.secondTerm) ;
     }
 
+    /**
+     * Derivative method that uses the firstTerm as the coefficient and secondTerm as exponent
+     */
     public void derivative() {
        deriv = true ;
        int coefficient = firstTerm * secondTerm ;

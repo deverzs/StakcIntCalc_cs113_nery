@@ -58,13 +58,14 @@ public class CalculatorView extends JPanel implements ActionListener {
         this.clearButton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         this.clearButton.addActionListener(this);
 
-        this.variableButton = new JButton("x");
-        this.variableButton.setFont(DEFAULT_FONT);
+        this.variableButton = new JButton("x^");
+        this.variableButton.setFont(new Font(Font.SERIF, Font.BOLD, 30));
         this.variableButton.addActionListener(this);
 
-        this.caretButton = new JButton("^");
-        this.caretButton.setFont(DEFAULT_FONT);
-        this.caretButton.addActionListener(this);
+
+        this.caretButton = new JButton("<= deriv");
+        this.caretButton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+       // this.caretButton.addActionListener(this);
 
         // Create buttons for digits 0-9
         this.digitButtons = new JButton[10];

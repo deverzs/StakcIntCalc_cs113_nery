@@ -167,6 +167,30 @@ public class CalculatorModelTest {
 
     }
 
+    @Test
+    public void testDerivative() {
+        String answer ;
+        String problem  ;
+
+        model = new CalculatorModel() ;
+        problem = "6 X 1" ;
+        answer = model.evaluate(problem) ;
+        assertEquals("Test failed to derive 6 x^ 1", "6",answer);
+
+        problem = "6 X 7" ;
+        answer = model.evaluate(problem) ;
+        assertEquals("Test failed to derive 6 x^ 7", "42X^6",answer);
+
+        problem = "6 X 0" ;
+        answer = model.evaluate(problem) ;
+        assertEquals("Test failed to derive 6 x^ 0", "0",answer);
+
+        problem = "233 X 67" ;
+        answer = model.evaluate(problem) ;
+        assertEquals("Test failed to derive 233 x^ 67", "15611X^66",answer);
+
+    }
+
     // Test setters and getters
 
     @Test

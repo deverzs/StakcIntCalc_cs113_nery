@@ -14,12 +14,13 @@ import java.util.Stack;
  * @version 1.0
  */
 public class CalculatorModel implements CalculatorInterface {
-    public static final String OPERATORS = "+-*/()";
+    public static final String OPERATORS = "+-*/()Xx";
     public static final int[] PRECEDENCE = {1, 1, 2, 2, -1, -1};
     private Stack<Integer> operands;
     private int firstTerm ;
     private int secondTerm ;
     private int total ;
+    private boolean deriv ;
 
     /**
      * Default constructor for CalculatorModel. All instance variables are set to default.
@@ -29,6 +30,7 @@ public class CalculatorModel implements CalculatorInterface {
         secondTerm = 0 ;
         total = 0 ;
         operands = new Stack<Integer>();
+        deriv = false ;
     }
 
     /**
@@ -41,6 +43,7 @@ public class CalculatorModel implements CalculatorInterface {
         secondTerm = term2 ;
         total = 0 ;
         operands = new Stack<Integer>() ;
+        deriv = false ;
     }
 
     /**
@@ -52,6 +55,7 @@ public class CalculatorModel implements CalculatorInterface {
         firstTerm = 0 ;
         secondTerm = 0 ;
         total = 0 ;
+        deriv = false ;
     }
 
     /**
@@ -63,6 +67,7 @@ public class CalculatorModel implements CalculatorInterface {
         firstTerm = model.firstTerm ;
         secondTerm = model.secondTerm ;
         total = model.total ;
+        deriv = false ;
 
     }
 
@@ -110,6 +115,13 @@ public class CalculatorModel implements CalculatorInterface {
         operands.push(this.firstTerm / this.secondTerm) ;
     }
 
+    public void derivative() {
+       deriv = true ;
+       int coefficient = firstTerm * secondTerm ;
+       int exponent = secondTerm - 1 ;
+       operands.push(exponent) ;
+       operands.push(coefficient) ;
+    }
 
     /**
      * Multiplies firstTerm and secondTerm and pushes result to stack
@@ -219,18 +231,26 @@ public class CalculatorModel implements CalculatorInterface {
             if (Character.isDigit(currentChar)) {
                 int operand = Integer.parseInt(token);
                 this.pushToStack(operand);
-            } else if (isOperator(currentChar)) {
+            }
+            else if (isOperator(currentChar)) {
                 this.secondTerm = this.popFromStack();
                 this.firstTerm = this.popFromStack();
                 calcTerms(currentChar);
+
             } else {
                 return "Invalid Character Detected!";
             }
         }
+
         this.total = this.popFromStack();
         if (this.operands.empty()) {
             return this.total + "";
-        } else {
+        }
+        else if (deriv) {
+            return this.total + "X^" + operands.pop() ;
+        }
+
+        else {
             return "NaN";
             // Stack should be empty
         }
@@ -254,6 +274,11 @@ public class CalculatorModel implements CalculatorInterface {
             case '/':
                 this.divide();
                 break;
+            case 'X' :
+            case 'x' :
+                this.derivative();
+
+                break ;
         }
     }
 
@@ -268,14 +293,19 @@ public class CalculatorModel implements CalculatorInterface {
         Scanner scan = new Scanner(expression);
 
         String token;
-        while ((token = scan.findInLine("[\\p{L}\\p{N}]+|[-+/\\*()]")) != null){
+        while ((token = scan.findInLine("[\\p{L}\\p{N}]+|[-+/\\*Xx()]")) != null){
             char firstChar = token.charAt(0);
-            if(Character.isJavaIdentifierStart(firstChar) || Character.isDigit(firstChar)){
+            if (firstChar == 'x' || firstChar == 'X') {
+                processOperator(operators, postFix, firstChar);
+            }
+            else if (Character.isJavaIdentifierStart(firstChar) || Character.isDigit(firstChar)){
                 postFix.append(token);
                 postFix.append(' ');
-            } else if(isOperator(firstChar)){
+            }
+            else if(isOperator(firstChar)){
                 processOperator(operators, postFix, firstChar);
-            } else{
+            }
+            else{
                 return "ERROR: Unsupported Operator";
             }
         }

@@ -49,9 +49,13 @@ You have been given a View and Controller for a basic integer calculator, **you 
 		- *Unit tests were written, all pass*
 		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
 - [ ] Complete following statement in space below:
->The Stack implementation we will be using is LinkedList because because adding to a LinkedList an O(1) Operation.
+>The Stack implementation we will be using is Stack because adding to it is an O(1) Operation. When reallocated, it is O(n) because of the Vector class it is based on, but since our LinkedList and even Java's Linked List is O(n) there is no measurable difference.
 
-## Sprint 1 (???)
+## Sprint 1
+
+![uml calc sprint 1](https://user-images.githubusercontent.com/31230409/47958737-6ead4780-df8e-11e8-9e60-656e57f45f7a.jpg)
+
+
 **User Story**:
 >As a user I want to save math expression so that I can solve any problem
 
@@ -64,9 +68,13 @@ You have been given a View and Controller for a basic integer calculator, **you 
 	- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
 - [ ] Product owner agrees
 
-## Sprint 2 (???)
+## Sprint 2
+
+![uml calc sprint 2](https://user-images.githubusercontent.com/31230409/47958728-54736980-df8e-11e8-8b2f-c6eddb66c672.jpg)
+
+
 **User Story**:
->As a user I want to evaluate saved expressions to get an accurate result 
+>As a user I want to evaluate saved expressions to get an accurate result and be able to calculate simple derivatives.
 
 **Definition Of Done**:
 - [ ] General requirements 

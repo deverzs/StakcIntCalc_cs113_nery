@@ -120,10 +120,28 @@ public class CalculatorModel implements CalculatorInterface {
      */
     public void derivative() {
        deriv = true ;
-       int coefficient = firstTerm * secondTerm ;
-       int exponent = secondTerm - 1 ;
-       operands.push(exponent) ;
-       operands.push(coefficient) ;
+       if (secondTerm == 0) {
+           operands.push(0);
+           deriv = false ;
+       }
+       else {
+           if (firstTerm == -1) {
+               System.out.println("First is -1");
+               firstTerm = 1 ;
+           }
+           int coefficient = firstTerm * secondTerm ;
+           int exponent = secondTerm - 1 ;
+           if (exponent == 0) {
+               operands.push(1*coefficient);
+               deriv = false ;
+           }
+           else {
+               operands.push(exponent);
+               operands.push(coefficient);
+           }
+       }
+
+
     }
 
     /**

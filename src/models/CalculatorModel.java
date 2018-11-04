@@ -117,6 +117,7 @@ public class CalculatorModel implements CalculatorInterface {
 
     /**
      * Derivative method that uses the firstTerm as the coefficient and secondTerm as exponent
+     * CONDITION: must enter using the format: digit_X^_digit_=
      */
     public void derivative() {
        deriv = true ;
@@ -132,7 +133,7 @@ public class CalculatorModel implements CalculatorInterface {
            int coefficient = firstTerm * secondTerm ;
            int exponent = secondTerm - 1 ;
            if (exponent == 0) {
-               operands.push(1*coefficient);
+               operands.push(coefficient);
                deriv = false ;
            }
            else {

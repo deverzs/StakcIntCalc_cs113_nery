@@ -1,7 +1,7 @@
 # CS113-GP2-StackIntegerCalculator
 ## GP #2 for CS113 - Stack Integer Calculator MVC project (using Agile Development/Scrum)
 
-**[//Insert Build Status Image//]**
+**[![Build Status](https://travis-ci.com/MiraCostaCS-Nery/cs113-gp2-stackintegercalculator-oscar-zsuzsanna.svg?token=ZAzHRsZG2pX38hWavrqj&branch=master)](https://travis-ci.com/MiraCostaCS-Nery/cs113-gp2-stackintegercalculator-oscar-zsuzsanna)**
 
 >The model-view-controller (MVC) is an architectural pattern commonly used with graphical user interfaces (GUI). The MVC splits application into three interconnected parts. This is done to allow for efficient code reuse and parallel development. The relation is thus - the user sees the View and uses the Controller which in turn manipulates the Model which updates the View.
 

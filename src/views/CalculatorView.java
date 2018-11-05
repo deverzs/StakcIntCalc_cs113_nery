@@ -223,14 +223,17 @@ public class CalculatorView extends JPanel implements ActionListener {
             this.setDisplay(""); // Clears display
         }
         else if (actionChar == OPERATORS[EVAL_OP]) {
-            value = calc.evaluate(this.getDisplay()); // Call CalculatorInterface method evaluate
-            // TODO: handle errors that may get thrown. Consider all possible exceptional expressions.
-            this.setDisplay("" + value); // Writes result of evaluated expression to the display
+            String userExpression = this.getDisplay();
+            if(userExpression.equals("")){
+                this.setDisplay("Enter Expression!");
+            } else{
+                value = calc.evaluate(userExpression); // Call CalculatorInterface method evaluate
+                this.setDisplay("" + value); // Writes result of evaluated expression to the display
+            }
         }
         else {
             // Digit or operator, so just concatenate to current display
             this.concatDisplay(actionCommand);
         }
     }
-
 }

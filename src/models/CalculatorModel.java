@@ -1,7 +1,6 @@
 package models;
 
 import jdk.nashorn.internal.ir.ReturnNode;
-
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -68,7 +67,6 @@ public class CalculatorModel implements CalculatorInterface {
         secondTerm = model.secondTerm ;
         total = model.total ;
         deriv = false ;
-
     }
 
     /**
@@ -141,8 +139,6 @@ public class CalculatorModel implements CalculatorInterface {
                operands.push(coefficient);
            }
        }
-
-
     }
 
     /**
@@ -258,7 +254,6 @@ public class CalculatorModel implements CalculatorInterface {
                 this.secondTerm = this.popFromStack();
                 this.firstTerm = this.popFromStack();
                 calcTerms(currentChar);
-
             } else {
                 return "Invalid Character Detected!";
             }
@@ -269,11 +264,10 @@ public class CalculatorModel implements CalculatorInterface {
             return this.total + "";
         }
         else if (deriv) {
-            return this.total + "X^" + operands.pop() ;
+            return this.total + " X^" + operands.pop() ;
         }
-
         else {
-            return "NaN";
+            return "System Error";
             // Stack should be empty
         }
     }
@@ -299,7 +293,6 @@ public class CalculatorModel implements CalculatorInterface {
             case 'X' :
             case 'x' :
                 this.derivative();
-
                 break ;
         }
     }
@@ -444,5 +437,4 @@ public class CalculatorModel implements CalculatorInterface {
         }
         return check ;
     }
-
 }

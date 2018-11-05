@@ -179,7 +179,7 @@ public class CalculatorModelTest {
 
         problem = "6 X 7" ;
         answer = model.evaluate(problem) ;
-        assertEquals("Test failed to derive 6 x^ 7", "42X^6",answer);
+        assertEquals("Test failed to derive 6 x^ 7", "42 X^6",answer);
 
         problem = "6 X 0" ;
         answer = model.evaluate(problem) ;
@@ -187,7 +187,7 @@ public class CalculatorModelTest {
 
         problem = "233 X 67" ;
         answer = model.evaluate(problem) ;
-        assertEquals("Test failed to derive 233 x^ 67", "15611X^66",answer);
+        assertEquals("Test failed to derive 233 x^ 67", "15611 X^66",answer);
 
     }
 

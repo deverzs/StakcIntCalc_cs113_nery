@@ -1,6 +1,5 @@
 package models;
 
-import jdk.nashorn.internal.ir.ReturnNode;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -267,8 +266,9 @@ public class CalculatorModel implements CalculatorInterface {
             return this.total + " X^" + operands.pop() ;
         }
         else {
-            return "System Error";
             // Stack should be empty
+            this.operands.clear();
+            return "Error: Malformed Expression";// Missing operator before parentheses
         }
     }
 
@@ -349,16 +349,16 @@ public class CalculatorModel implements CalculatorInterface {
             if(precedence(operator) > precedence(topOperator)){
                 operators.push(operator);
             } else{
-                while(!operators.empty() && precedence(operator) <= precedence(topOperator)){
+                while(!operators.empty() && precedence(operator) <= precedence(topOperator) && topOperator != '('){
                     operators.pop();
-                    if(topOperator == '('){
-                        break;
-                    }
                     postFix.append(topOperator);
                     postFix.append(' ');
                     if(!operators.empty()){
                         topOperator = operators.peek();
                     }
+                }
+                if(topOperator == '('){
+                    operators.pop();
                 }
                 if(operator != ')'){
                     operators.push(operator);

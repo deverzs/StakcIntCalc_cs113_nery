@@ -14,7 +14,7 @@ import java.awt.FlowLayout;
 public class CalculatorController extends JFrame {
 
     /** Default window size, can be resized but starts at these dimensions. */
-    private static final int WIDTH = 450, HEIGHT = 200;
+    private static final int WIDTH = 600, HEIGHT = 400;
 
     /**
      * Builds frame details and adds CalculatorView.
@@ -24,7 +24,7 @@ public class CalculatorController extends JFrame {
     public CalculatorController(CalculatorInterface calc) {
         super(); // JFrame constructor
 
-        this.setSize(600, 400);
+        this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("CS113 Stack Calculator");

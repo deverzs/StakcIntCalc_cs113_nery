@@ -35,20 +35,20 @@ You have been given a View and Controller for a basic integer calculator, **you 
 
 
 ## Sprint 0 (Planning sprint)
-- [ ] Gather requirements
-- [ ] Think, dialogue with partner, and make some big technical decisions (decide on data structure(s) that is/are the most reasonable for implementation, classes to create, methods for each, diagrams, etc.)
-- [ ] Create detailed description of what you are accomplishing/doing
-- [ ] Breakdown into two logical/doable sprints (Sprint 1 and Sprint 2)
-- [ ] Formally define **each** sprint with the following (*see Topic 1 for more details*):
-	- [ ] User Story (1-2 sentences in everyday language of end user that summarizes what needs to be developed)
-	- [ ] Create list of tasks and tests, using an Agile task board to keep track (Trello)
-	- [ ] Create definition of done (required for every sprint):
+- [x] Gather requirements
+- [x] Think, dialogue with partner, and make some big technical decisions (decide on data structure(s) that is/are the most reasonable for implementation, classes to create, methods for each, diagrams, etc.)
+- [x] Create detailed description of what you are accomplishing/doing
+- [x] Breakdown into two logical/doable sprints (Sprint 1 and Sprint 2)
+- [x] Formally define **each** sprint with the following (*see Topic 1 for more details*):
+	- [x] User Story (1-2 sentences in everyday language of end user that summarizes what needs to be developed)
+	- [x] Create list of tasks and tests, using an Agile task board to keep track (Trello)
+	- [x] Create definition of done (required for every sprint):
 		- *Code adheres to coding standard/convention*
 		- *Code is documented*
 		- *Code checked into GitHub*
 		- *Unit tests were written, all pass*
 		- *Relevant diagrams and documentation updated and accurate (UML class/sequence diagrams, etc.)*
-- [ ] Complete following statement in space below:
+- [x] Complete following statement in space below:
 >The Stack implementation we will be using is Stack because adding to it is an O(1) Operation. When reallocated, it is O(n) because of the Vector class it is based on, but since our LinkedList and even Java's Linked List is O(n) there is no measurable difference.
 
 ## Sprint 1
@@ -57,10 +57,10 @@ You have been given a View and Controller for a basic integer calculator, **you 
 
 
 **User Story**:
->As a user I want to save math expression so that I can solve any problem
+>As a user I want to save math expression so that I can solve basic arithmetic
 
 **Definition Of Done**:
-- [ ] General requirements 
+- [x] General requirements 
 	- *Code adheres to coding standard/convention*
 	- *Code is documented*
 	- *Code checked into GitHub*
@@ -77,7 +77,7 @@ You have been given a View and Controller for a basic integer calculator, **you 
 >As a user I want to evaluate saved expressions to get an accurate result and be able to calculate simple derivatives.
 
 **Definition Of Done**:
-- [ ] General requirements 
+- [x] General requirements 
 	- *Code adheres to coding standard/convention*
 	- *Code is documented*
 	- *Code checked into GitHub*
